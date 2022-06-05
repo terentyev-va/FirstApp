@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
     
@@ -74,6 +75,9 @@ class MainViewController: UIViewController {
     private let calendarView = CalendarView()
     private let weatherView = WeatherView()
     
+    private let localRealm = try! Realm()
+    private var workoutArray: Results<WorkoutModel>!
+    
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
     
     override func viewDidLayoutSubviews() {
@@ -88,6 +92,7 @@ class MainViewController: UIViewController {
         setupViews()
         setConstraints()
         setDelegates()
+        getWorkouts(date: Date().localDate())
     }
     
     private func setupViews() {
@@ -110,6 +115,7 @@ class MainViewController: UIViewController {
     private func setDelegates() {
         tableView.dataSource = self
         tableView.delegate = self
+        calendarView.cellCollectionViewDelegate = self
     }
     
     @objc private func addWorkoutButtonTapped() {
@@ -118,6 +124,26 @@ class MainViewController: UIViewController {
         present(newWorkoutViewController, animated: true)
     }
     
+    private func getWorkouts(date: Date) {
+        
+        let weekday = date.getWeekdayNumber()
+        let dateStart = date.startEndDate().0
+        let dateEnd = date.startEndDate().1
+        
+        let predicateRepeat = NSPredicate(format: "workoutNumberOfDay = \(weekday) AND workoutRepeat = true")
+        let predicateUnrepeat = NSPredicate(format: "workoutRepeat = false AND workoutDate BETWEEN %@", [dateStart, dateEnd])
+        let compound = NSCompoundPredicate(type:  .or, subpredicates: [predicateRepeat, predicateUnrepeat])
+        
+        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
+        tableView.reloadData()
+    }
+}
+
+extension MainViewController: SelectCollectionViewItemProtocol {
+    
+    func selectItem(date: Date) {
+        getWorkouts(date: date)
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -125,13 +151,17 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        workoutArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idWorkoutTableViewCell, for: indexPath) as? WorkoutTableViewCell else {
             return UITableViewCell()
         }
+        
+        let model = workoutArray[indexPath.row]
+        cell.cellConfigure(model: model)
+        
         return cell
     }
 }

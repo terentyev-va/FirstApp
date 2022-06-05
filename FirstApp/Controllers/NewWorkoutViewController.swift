@@ -106,8 +106,8 @@ class NewWorkoutViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        setModel()  // Сохраняем модель тренировки
-        RealmManager.shared.saveWorkoutModel(model: workoutModel) // Передаем в менеджер
+        setModel()  // назначаем модель тренировки
+        saveModel() // сохраняем модель
     }
     
     
@@ -128,16 +128,48 @@ class NewWorkoutViewController: UIViewController {
         
         guard let imageData = testImage?.pngData() else { return }  // Переводим изображение в Data
         workoutModel.workoutImage = imageData
-        
     }
     
-    // Метод скрытия клавиатуры по тапу
+    // Метод проверки на кол-во символов и введенных данных
+    private func saveModel() {
+        guard let text = nameTextField.text else { return }
+        let count = text.filter { $0.isNumber || $0.isLetter }.count
+        
+        if count != 0 &&
+            workoutModel.workoutSets != 0 &&
+            (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0) {
+            RealmManager.shared.saveWorkoutModel(model: workoutModel)
+            workoutModel = WorkoutModel()
+            refreshObjects()
+            alertOk(title: "Ваша тренировка сохранена", message: nil)
+        } else {
+            alertOk(title: "Ошибка", message: "Введите данные")
+        }
+    }
+    
+    // Метод сброса значений
+    private func refreshObjects() {
+        dateAndRepeatView.refreshDatePickerAndSwitch()
+        repsOrTimerView.refresLabelsAndSliders()
+        nameTextField.text = ""
+    }
+    
+    // Метод скрытия клавиатуры по тапу и свайпу
     private func addTaps() {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hiedKeyboard))
+        view.addGestureRecognizer(tapScreen)
+        
+        let swipeScreen = UISwipeGestureRecognizer(target: self, action: #selector(swipeHideKeyboard))
+        swipeScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(swipeScreen)
     }
     
     @objc private func hiedKeyboard() {
-        
+        view.endEditing(true)
+    }
+    
+    @objc private func swipeHideKeyboard() {
+        view.endEditing(true)
     }
 }
 
