@@ -65,4 +65,9 @@ extension Date {
         let offsetDate = Calendar.current.date(byAdding:  .day, value: -days, to: self) ?? Date()
         return offsetDate
     }
+    
+    func offsetMonth(month: Int) -> Date {
+        let offsetDate = Calendar.current.date(byAdding: .month, value: -month, to: self) ?? Date()
+        return offsetDate
+    }
 }

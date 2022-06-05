@@ -61,6 +61,14 @@ class MainViewController: UIViewController {
         return label
     }()
     
+    private let noWorkoutImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "noWorkout")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.backgroundColor = .none
@@ -85,6 +93,13 @@ class MainViewController: UIViewController {
         
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getWorkouts(date: Date())
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +107,7 @@ class MainViewController: UIViewController {
         setupViews()
         setConstraints()
         setDelegates()
-        getWorkouts(date: Date().localDate())
+
     }
     
     private func setupViews() {
@@ -107,6 +122,7 @@ class MainViewController: UIViewController {
         weatherView.addShadowOnView()
         
         view.addSubview(workoutTodayLabel)
+        view.addSubview(noWorkoutImageView)
         
         view.addSubview(tableView)
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
@@ -135,8 +151,30 @@ class MainViewController: UIViewController {
         let compound = NSCompoundPredicate(type:  .or, subpredicates: [predicateRepeat, predicateUnrepeat])
         
         workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
+        
+        checkWorkoutToday()
         tableView.reloadData()
     }
+    
+    private func checkWorkoutToday() {
+        
+        if workoutArray.count == 0 {
+            noWorkoutImageView.isHidden = false
+            tableView.isHidden = true
+        } else {
+            noWorkoutImageView.isHidden = true
+            tableView.isHidden = false
+        }
+    }
+}
+
+extension MainViewController: StrartWorkoutProtocol {
+    
+    func startButtonTapped(model: WorkoutModel) {
+        print(model)
+    }
+    
+    
 }
 
 extension MainViewController: SelectCollectionViewItemProtocol {
@@ -161,6 +199,7 @@ extension MainViewController: UITableViewDataSource {
         
         let model = workoutArray[indexPath.row]
         cell.cellConfigure(model: model)
+        cell.cellStartWorkoutDelegate = self
         
         return cell
     }
@@ -172,6 +211,21 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // Удаление по свайпу
+        let action = UIContextualAction(style: .destructive, title: "") { _, _, _ in
+            let deleteModel = self.workoutArray[indexPath.row]
+            RealmManager.shared.deleteWorkoutModel(model: deleteModel)
+            tableView.reloadData()
+        }
+        
+        action.backgroundColor = .specialBackground
+        action.image = UIImage(named: "delete")
+        
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
@@ -226,6 +280,13 @@ extension MainViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            noWorkoutImageView.topAnchor.constraint(equalTo: workoutTodayLabel.bottomAnchor, constant: 0),
+            noWorkoutImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            noWorkoutImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            noWorkoutImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
         ])
     }
 }
