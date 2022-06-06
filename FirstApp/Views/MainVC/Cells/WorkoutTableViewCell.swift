@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol StrartWorkoutProtocol: AnyObject {
+protocol StartWorkoutProtocol: AnyObject {
     func startButtonTapped(model: WorkoutModel)
 }
 
@@ -82,7 +82,7 @@ class WorkoutTableViewCell: UITableViewCell {
     var labelsStackView = UIStackView()
     var workoutModel = WorkoutModel()
     
-    weak var cellStartWorkoutDelegate: StrartWorkoutProtocol?
+    weak var cellStartWorkoutDelegate: StartWorkoutProtocol?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

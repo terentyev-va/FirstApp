@@ -71,7 +71,7 @@ class TimerWorkoutViewController: UIViewController {
     }
     
     @objc private func closeButtonTapped() {
-        print("closeButtonTapped")
+        dismiss(animated: true)
     }
     
     @objc private func finishButtonTapped() {

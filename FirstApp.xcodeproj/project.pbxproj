@@ -23,6 +23,7 @@
 		FA5BD8FF28439E7300BCB89C /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BD8FE28439E7300BCB89C /* StatisticsViewController.swift */; };
 		FA5BD9032843A4DE00BCB89C /* StatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BD9022843A4DE00BCB89C /* StatisticTableViewCell.swift */; };
 		FA5BD9052843BABA00BCB89C /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BD9042843BABA00BCB89C /* UILabel + Extensions.swift */; };
+		FA778FC0284E5BE2006723FB /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA778FBF284E5BE2006723FB /* CustomAlert.swift */; };
 		FA783C83284B8726009F57B9 /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA783C82284B8726009F57B9 /* SimpleAlert.swift */; };
 		FA7D99FD2842D0E50051C6C2 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7D99FB2842D0E50051C6C2 /* Roboto-Medium.ttf */; };
 		FA7D99FE2842D0E50051C6C2 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7D99FC2842D0E50051C6C2 /* Roboto-Bold.ttf */; };
@@ -61,6 +62,7 @@
 		FA5BD8FE28439E7300BCB89C /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		FA5BD9022843A4DE00BCB89C /* StatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCell.swift; sourceTree = "<group>"; };
 		FA5BD9042843BABA00BCB89C /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
+		FA778FBF284E5BE2006723FB /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		FA783C82284B8726009F57B9 /* SimpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
 		FA7D99FB2842D0E50051C6C2 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		FA7D99FC2842D0E50051C6C2 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FA783C82284B8726009F57B9 /* SimpleAlert.swift */,
+				FA778FBF284E5BE2006723FB /* CustomAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				FA5BD9052843BABA00BCB89C /* UILabel + Extensions.swift in Sources */,
 				FA5BD9032843A4DE00BCB89C /* StatisticTableViewCell.swift in Sources */,
 				FA9CE8782845B98900777275 /* RepsOrTimerView.swift in Sources */,
+				FA778FC0284E5BE2006723FB /* CustomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

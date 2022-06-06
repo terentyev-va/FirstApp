@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol NextSetProtocol: AnyObject {
+    func nextSetTapped()
+    func editingTapped()
+}
+
 class WorkoutParametersView: UIView {
     
     let workoutNameLabel: UILabel = {
@@ -96,7 +101,7 @@ class WorkoutParametersView: UIView {
     var repsStackView = UIStackView()
     var setsStackView = UIStackView()
     
-    
+    weak var cellNextSetDelegate: NextSetProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -132,11 +137,11 @@ class WorkoutParametersView: UIView {
     }
     
     @objc private func editingButtonTapped() {
-        print("editingButtonTapped")
+        cellNextSetDelegate?.editingTapped()
     }
     
     @objc private func nextSetsButtonTapped() {
-        print("nextSetsButtonTapped")
+        cellNextSetDelegate?.nextSetTapped()
     }
     
     private func setConstraints() {

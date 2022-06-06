@@ -50,11 +50,22 @@ class RepsWorkoutViewController: UIViewController {
     
     private let workoutParametersView = WorkoutParametersView()
     
+    var workoutModel = WorkoutModel()
+    let customAlert = CustomAlert()
+    
+    private var numberOfSet = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setConstraints()
+        setDelegate()
+        setWorkoutParametrs()
+    }
+    
+    private func setDelegate() {
+        workoutParametersView.cellNextSetDelegate = self
     }
     
     private func setupViews() {
@@ -69,11 +80,36 @@ class RepsWorkoutViewController: UIViewController {
     }
     
     @objc private func closeButtonTapped() {
-        print("closeButtonTapped")
+        dismiss(animated: true)
     }
     
     @objc private func finishButtonTapped() {
         print("finishButtonTapped")
+    }
+    
+    private func setWorkoutParametrs() {
+        workoutParametersView.workoutNameLabel.text = workoutModel.workoutName
+        workoutParametersView.numberOfSetsLabel.text = "\(numberOfSet)/\(workoutModel.workoutSets)"
+        workoutParametersView.numberOfRepsLabel.text = "\(workoutModel.workoutReps)"
+    }
+}
+
+extension RepsWorkoutViewController: NextSetProtocol {
+    
+    func nextSetTapped() {
+        customAlert.alertCustom(viewController: self,
+                                repsOrTimer: "Reps") { test, test2 in
+            
+        }
+    }
+    
+    func editingTapped() {
+        if numberOfSet < workoutModel.workoutSets {
+            numberOfSet += 1
+            workoutParametersView.numberOfSetsLabel.text = "\(numberOfSet)/\(workoutModel.workoutSets)"
+        } else {
+            alertOk(title: "Error", message: "Finish your workout")
+        }
     }
 }
 
