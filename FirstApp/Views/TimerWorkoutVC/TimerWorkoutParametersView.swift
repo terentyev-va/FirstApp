@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol NextSetTimerProtocol: AnyObject {
+    func nextSetTimerTapped()
+    func editingTimerTapped()
+}
+
 class TimerWorkoutParametersView: UIView {
     
     let workoutNameLabel: UILabel = {
@@ -70,7 +75,7 @@ class TimerWorkoutParametersView: UIView {
         return view
     }()
     
-    private lazy var  editingButton: UIButton = {
+     lazy var  editingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "editing")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.setTitle("Editing", for: .normal)
@@ -81,7 +86,7 @@ class TimerWorkoutParametersView: UIView {
         return button
     }()
     
-    private lazy var  nextSetsButton: UIButton = {
+     lazy var  nextSetsButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .specialYellow
         button.layer.cornerRadius = 10
@@ -95,6 +100,8 @@ class TimerWorkoutParametersView: UIView {
     
     var repsStackView = UIStackView()
     var setsStackView = UIStackView()
+    
+    weak var cellNextSetTimerDelegate: NextSetTimerProtocol?
     
     
     override init(frame: CGRect) {
@@ -119,12 +126,16 @@ class TimerWorkoutParametersView: UIView {
         setsStackView = UIStackView(arrangedSubviews: [setsLabel, numberOfSetsLabel],
                                     axis: .horizontal,
                                     spacing: 10)
+        setsStackView.distribution = .equalSpacing
+        
         addSubview(setsStackView)
         addSubview(setsLineView)
  
         repsStackView = UIStackView(arrangedSubviews: [timerLabel, numberOfTimerLabel],
                                     axis: .horizontal,
                                     spacing: 10)
+        repsStackView.distribution = .equalSpacing
+        
         addSubview(repsStackView)
         addSubview(repsLineView)
         addSubview(editingButton)
@@ -132,12 +143,14 @@ class TimerWorkoutParametersView: UIView {
     }
     
     @objc private func editingButtonTapped() {
-        print("editingButtonTapped")
+        cellNextSetTimerDelegate?.editingTimerTapped()
     }
     
     @objc private func nextSetsButtonTapped() {
-        print("nextSetsButtonTapped")
+        cellNextSetTimerDelegate?.nextSetTimerTapped()
     }
+    
+    
 }
 
 extension TimerWorkoutParametersView {

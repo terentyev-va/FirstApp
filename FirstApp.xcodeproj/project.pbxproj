@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132CD8BA28524B89004E309A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8B928524B89004E309A /* Realm */; };
+		132CD8BC28524B89004E309A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8BB28524B89004E309A /* RealmSwift */; };
+		136A1D6E285A2C0200106CD6 /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */; };
 		FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */; };
 		FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */; };
 		FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */; };
@@ -44,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
 		FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				132CD8BC28524B89004E309A /* RealmSwift in Frameworks */,
+				132CD8BA28524B89004E309A /* Realm in Frameworks */,
 				FA7FCA5B2846023D00CEDEA6 /* RealmSwift in Frameworks */,
 				FA7FCA592846023D00CEDEA6 /* Realm in Frameworks */,
 			);
@@ -243,6 +249,7 @@
 			children = (
 				FA7D99FA2842CF6A0051C6C2 /* UIKit */,
 				FA7FCA612847599300CEDEA6 /* Date + Extensions.swift */,
+				136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -304,6 +311,8 @@
 			packageProductDependencies = (
 				FA7FCA582846023D00CEDEA6 /* Realm */,
 				FA7FCA5A2846023D00CEDEA6 /* RealmSwift */,
+				132CD8B928524B89004E309A /* Realm */,
+				132CD8BB28524B89004E309A /* RealmSwift */,
 			);
 			productName = FirstApp;
 			productReference = FA4993CE2840FC0D00EAC574 /* FirstApp.app */;
@@ -335,6 +344,7 @@
 			mainGroup = FA4993C52840FC0D00EAC574;
 			packageReferences = (
 				FA7FCA572846023D00CEDEA6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				132CD8B828524B89004E309A /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = FA4993CF2840FC0D00EAC574 /* Products */;
 			projectDirPath = "";
@@ -384,6 +394,7 @@
 				FA0132372847CFC300BC7392 /* TimerWorkoutParametersView.swift in Sources */,
 				FA7D9A092842DEE50051C6C2 /* CalendarCollectionViewCell.swift in Sources */,
 				FA7D9A002842D2430051C6C2 /* UIView + Extensions.swift in Sources */,
+				136A1D6E285A2C0200106CD6 /* Int + Extensions.swift in Sources */,
 				FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */,
 				FA4993D42840FC0E00EAC574 /* SceneDelegate.swift in Sources */,
 				FA7FCA622847599300CEDEA6 /* Date + Extensions.swift in Sources */,
@@ -605,6 +616,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		132CD8B828524B89004E309A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FA7FCA572846023D00CEDEA6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -616,6 +635,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		132CD8B928524B89004E309A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA7FCA572846023D00CEDEA6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		132CD8BB28524B89004E309A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA7FCA572846023D00CEDEA6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		FA7FCA582846023D00CEDEA6 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA7FCA572846023D00CEDEA6 /* XCRemoteSwiftPackageReference "realm-swift" */;
