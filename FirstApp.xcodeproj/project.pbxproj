@@ -10,6 +10,7 @@
 		132CD8BA28524B89004E309A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8B928524B89004E309A /* Realm */; };
 		132CD8BC28524B89004E309A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8BB28524B89004E309A /* RealmSwift */; };
 		136A1D6E285A2C0200106CD6 /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */; };
+		136A1D70285B30A700106CD6 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */; };
 		FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */; };
 		FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */; };
 		FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
+		136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
 		FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				FA783C82284B8726009F57B9 /* SimpleAlert.swift */,
 				FA778FBF284E5BE2006723FB /* CustomAlert.swift */,
+				136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				FA7FCA5D2846155500CEDEA6 /* WorkoutModel.swift in Sources */,
 				FA4993EE28411C2300EAC574 /* WeatherView.swift in Sources */,
 				FA9CE86B28446F7600777275 /* MainTabBarController.swift in Sources */,
+				136A1D70285B30A700106CD6 /* OkCancelAlert.swift in Sources */,
 				FA4993D62840FC0E00EAC574 /* MainViewController.swift in Sources */,
 				FA7FCA602846348900CEDEA6 /* RealmManager.swift in Sources */,
 				FA5BD8FF28439E7300BCB89C /* StatisticsViewController.swift in Sources */,

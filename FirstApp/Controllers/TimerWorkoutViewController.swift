@@ -103,10 +103,20 @@ class TimerWorkoutViewController: UIViewController {
     
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
+        timer.invalidate()
     }
     
     @objc private func finishButtonTapped() {
-        print("finishButtonTapped")
+        if numberOfSet == workoutModel.workoutSets {
+            dismiss(animated: true)
+            RealmManager.shared.updateStatusWorkoutModel(model: workoutModel)
+        } else {
+            alertOkCancel(title: "Warning",
+                          message: "You haven't finished your workout") {
+                self.dismiss(animated: true)
+            }
+        }
+        
     }
     
     private func addTaps() {
@@ -160,8 +170,6 @@ class TimerWorkoutViewController: UIViewController {
         timerLabel.text = "\(min):\(sec.setZeroForSecond())"
         durationTimer = workoutModel.workoutTimer
     }
-    
-    
 }
 
 //MARK: - NextSetTimerProtocol
@@ -177,10 +185,22 @@ extension TimerWorkoutViewController: NextSetTimerProtocol {
     }
     
     func editingTimerTapped() {
-        
+        customAlert.alertCustom(viewController: self,
+                                repsOrTimer: "Timer of set") { [self] sets , timerOfSet in
+            if sets != "" && timerOfSet != "" {
+                guard let numberOfSets = Int(sets) else { return }
+                guard let numberOfTimer = Int(timerOfSet) else { return }
+                let (min, sec) = numberOfTimer.convertSeconds()
+                timerWorkoutParametersView.numberOfSetsLabel.text = "\(numberOfSet)/\(sets)"
+                timerWorkoutParametersView.numberOfTimerLabel.text = "\(min) min \(sec) sec"
+                timerLabel.text = "\(min):\(sec.setZeroForSecond())"
+                durationTimer = numberOfTimer
+                RealmManager.shared.updateSetsTimerWorkoutModel(model: workoutModel,
+                                                                sets: numberOfSets,
+                                                                timer: numberOfTimer)
+            }
+        }
     }
-    
-    
 }
 
 extension TimerWorkoutViewController {
@@ -266,6 +286,5 @@ extension TimerWorkoutViewController {
             finishButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             finishButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-
     }
 }

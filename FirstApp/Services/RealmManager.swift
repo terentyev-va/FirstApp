@@ -36,7 +36,7 @@ class RealmManager {
     
     func updateStatusWorkoutModel(model: WorkoutModel) {
         try! localRealm.write {
-            model.workoutStatus
+            model.workoutStatus = true
         }
     }
     

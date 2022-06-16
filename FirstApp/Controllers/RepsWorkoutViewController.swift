@@ -84,7 +84,15 @@ class RepsWorkoutViewController: UIViewController {
     }
     
     @objc private func finishButtonTapped() {
-        print("finishButtonTapped")
+        if numberOfSet == workoutModel.workoutSets {
+            dismiss(animated: true)
+            RealmManager.shared.updateStatusWorkoutModel(model: workoutModel)
+        } else {
+            alertOkCancel(title: "Warning",
+                          message: "You haven't finished your workout") {
+                self.dismiss(animated: true)
+            }
+        }
     }
     
     private func setWorkoutParametrs() {
@@ -100,7 +108,16 @@ extension RepsWorkoutViewController: NextSetProtocol {
     
     func editingTapped() {
         customAlert.alertCustom(viewController: self,
-                                repsOrTimer: "Reps") { test, test2 in
+                                repsOrTimer: "Reps") { [self] sets , reps in
+            if sets != "" && reps != "" {
+                workoutParametersView.numberOfSetsLabel.text = "\(numberOfSet)/\(sets)"
+                workoutParametersView.numberOfRepsLabel.text = reps
+                guard let numberOfSets = Int(sets),
+                      let numberOfReps = Int(reps) else { return }
+                RealmManager.shared.updateSetsRepsWorkoutModel(model: workoutModel,
+                                                               sets: numberOfSets,
+                                                               reps: numberOfReps)
+            }
             
         }
     }
