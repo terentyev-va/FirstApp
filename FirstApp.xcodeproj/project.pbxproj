@@ -11,6 +11,7 @@
 		132CD8BC28524B89004E309A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8BB28524B89004E309A /* RealmSwift */; };
 		136A1D6E285A2C0200106CD6 /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */; };
 		136A1D70285B30A700106CD6 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */; };
+		136A1D73285B7DC000106CD6 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */; };
 		FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */; };
 		FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */; };
 		FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
 		136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
+		136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		136A1D71285B7D9800106CD6 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
 		FA0132322847CF3B00BC7392 /* RepsWorkoutVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +208,7 @@
 				FA0132322847CF3B00BC7392 /* RepsWorkoutVC */,
 				FA0132332847CF5700BC7392 /* TimerWorkoutVC */,
 				FA9CE87228448D5000777275 /* NewWorkoutVC */,
+				136A1D71285B7D9800106CD6 /* ProfileVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				136A1D73285B7DC000106CD6 /* ProfileCollectionViewCell.swift in Sources */,
 				FA5BD8FD284394A100BCB89C /* UIStackView + Extensions.swift in Sources */,
 				FA7FCA5D2846155500CEDEA6 /* WorkoutModel.swift in Sources */,
 				FA4993EE28411C2300EAC574 /* WeatherView.swift in Sources */,
