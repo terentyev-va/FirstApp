@@ -6,6 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
+
+struct ResultWorkout {
+    let name: String
+    let result: Int
+    let imageData: Data?
+}
 
 class ProfileViewController: UIViewController {
     
@@ -118,8 +125,13 @@ class ProfileViewController: UIViewController {
     private var userParamStackView = UIStackView()
     private var targetStackView = UIStackView()
     
-        
     private let idProfileCollectionViewCell = "idProfileCollectionViewCell"
+    
+    private var resultWorkout = [ResultWorkout]()
+    
+    private let localRealm = try! Realm()
+    private var workoutArray: Results<WorkoutModel>!
+    private var userArray: Results<UserModel>!
     
     
     
@@ -161,11 +173,41 @@ class ProfileViewController: UIViewController {
         targetStackView = UIStackView(arrangedSubviews: [workoutsNowLabel, workoutsTargetLabel],
                                       axis: .horizontal, spacing: 10)
         view.addSubview(targetStackView)
+    }
+    
+    private func getWorkoutName() -> [String] {
         
+        var nameArray = [String]()
+        workoutArray = localRealm.objects(WorkoutModel.self)
+        
+        for workoutModel in workoutArray {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        return nameArray
+    }
+    
+    private func getWorkoutResults() {
+        
+        let nameArray = getWorkoutName()
+        
+        for name in nameArray {
+            let predicateName = NSPredicate(format: "workoutName = '\(name)'")
+            workoutArray = localRealm.objects(WorkoutModel.self).filter(predicateName).sorted(byKeyPath: "workoutName")
+            var result = 0
+            var image: Data?
+            workoutArray.forEach { model in
+                result += model.workoutReps 
+                image = model.workoutImage
+            }
+            let resultModel = ResultWorkout(name: name, result: result, imageData: image)
+            resultWorkout.append(resultModel)
+        }
     }
     
     @objc private func editingButtonTap() {
-        let settingViewController = SettingViewController()
+        let settingViewController = SettingsViewController()
         settingViewController.modalPresentationStyle = .fullScreen
         present(settingViewController, animated: true)
     }

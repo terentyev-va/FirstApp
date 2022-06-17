@@ -1,13 +1,14 @@
 //
-//  SettingViewController.swift
+//  SettingsViewController.swift
 //  FirstApp
 //
 //  Created by Вячеслав Терентьев on 17.06.2022.
 //
 
 import UIKit
+import RealmSwift
 
-class SettingViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     private let editingProfileLabel: UILabel = {
        let label = UILabel()
@@ -151,6 +152,10 @@ class SettingViewController: UIViewController {
     private var targetStackView = UIStackView()
     private var generalStackView = UIStackView()
     
+    private let localRealm = try! Realm()
+    private var userArray: Results<UserModel>!
+    private var userModel = UserModel()
+    
     override func viewDidLayoutSubviews() {
         addPhotoImageView.layer.cornerRadius = addPhotoImageView.frame.height / 2
     }
@@ -160,6 +165,10 @@ class SettingViewController: UIViewController {
         
         setupViews()
         setConstraints()
+        addTaps()
+        
+        userArray = localRealm.objects(UserModel.self)
+        loadUserInfo()
     }
     
     private func setupViews() {
@@ -206,13 +215,102 @@ class SettingViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        print("save")
+        setUserModel()
+        
+        if userArray.count == 0 {
+            RealmManager.shared.saveUserModel(model: userModel)
+        } else {
+            RealmManager.shared.updateUserModel(model: userModel)
+        }
+        userModel = UserModel()
+        dismiss(animated: true)
+    }
+    
+    private func addTaps() {
+        let tapImageView = UITapGestureRecognizer(target: self, action: #selector(setUserPhoto))
+        addPhotoImageView.isUserInteractionEnabled = true
+        addPhotoImageView.addGestureRecognizer(tapImageView)
+    }
+    
+    private func loadUserInfo() {
+        if userArray.count != 0 {
+            firstNameTextField.text = userArray[0].userFirstName
+            secondNameTextField.text = userArray[0].userSecondName
+            heightTextField.text = "\(userArray[0].userHeight)"
+            weightTextField.text = "\(userArray[0].userWeight)"
+            targetTextField.text = "\(userArray[0].userTarget)"
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            addPhotoImageView.image = image
+            addPhotoImageView.contentMode = .scaleAspectFit
+        }
+    }
+    
+    @objc private func setUserPhoto() {
+        alerPhotoOrCamera { [weak self] source in
+            guard let self = self else { return }
+            self.chooseImagePicker(source: source)
+        }
+    }
+    
+    private func setUserModel() {
+        
+        guard let firstName = firstNameTextField.text,
+              let secondName = secondNameTextField.text,
+              let height = heightTextField.text,
+              let weight = weightTextField.text,
+              let target = targetTextField.text else {
+            return
+        }
+        
+        guard let intHeight = Int(height),
+              let intWeight = Int(weight),
+              let intTarget = Int(target) else {
+            return
+        }
+        
+        userModel.userFirstName = firstName
+        userModel.userSecondName = secondName
+        userModel.userHeight = intHeight
+        userModel.userWeight = intWeight
+        userModel.userTarget = intTarget
+        
+        if addPhotoImageView.image == UIImage(named: "addPhoto") {
+            userModel.userImage = nil
+        } else {
+            guard let imageData = addPhotoImageView.image?.pngData() else { return }
+            userModel.userImage = imageData
+        }
+    }
+    
+    
+}
+
+extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as? UIImage
+        addPhotoImageView.image = image
+        addPhotoImageView.contentMode = .scaleAspectFit
+        dismiss(animated: true)
     }
 }
 
 //MARK: - SetConstraints
 
-extension SettingViewController {
+extension SettingsViewController {
     
     private func setConstraints() {
         
