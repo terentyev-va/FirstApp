@@ -97,7 +97,26 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    private let workoutsNowLabel: UILabel = {
+       let label = UILabel()
+        label.text = "0"
+        label.font = .robotoBold24()
+        label.textColor = .specialGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let workoutsTargetLabel: UILabel = {
+       let label = UILabel()
+        label.text = "0"
+        label.font = .robotoBold24()
+        label.textColor = .specialGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private var userParamStackView = UIStackView()
+    private var targetStackView = UIStackView()
     
         
     private let idProfileCollectionViewCell = "idProfileCollectionViewCell"
@@ -139,10 +158,16 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(targetLabel)
         
+        targetStackView = UIStackView(arrangedSubviews: [workoutsNowLabel, workoutsTargetLabel],
+                                      axis: .horizontal, spacing: 10)
+        view.addSubview(targetStackView)
+        
     }
     
     @objc private func editingButtonTap() {
-        print("editingButtonTap")
+        let settingViewController = SettingViewController()
+        settingViewController.modalPresentationStyle = .fullScreen
+        present(settingViewController, animated: true)
     }
 }
 
@@ -156,6 +181,7 @@ extension ProfileViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idProfileCollectionViewCell", for: indexPath) as? ProfileCollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = (indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ? .specialGreen : .specialDarkYellow)
         return cell
     }
 }
@@ -233,6 +259,12 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             targetLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 30),
             targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            targetStackView.topAnchor.constraint(equalTo: targetLabel.bottomAnchor, constant: 10),
+            targetStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            targetStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
     }
 }

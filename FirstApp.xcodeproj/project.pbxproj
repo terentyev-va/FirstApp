@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1302A395285C4A5A009A70E9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A394285C4A5A009A70E9 /* SettingViewController.swift */; };
 		132CD8BA28524B89004E309A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8B928524B89004E309A /* Realm */; };
 		132CD8BC28524B89004E309A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 132CD8BB28524B89004E309A /* RealmSwift */; };
 		136A1D6E285A2C0200106CD6 /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1302A394285C4A5A009A70E9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		136A1D6D285A2C0200106CD6 /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
 		136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
 		136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */,
 				FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */,
 				FA9CE86E284474DA00777275 /* ProfileViewController.swift */,
+				1302A394285C4A5A009A70E9 /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				FA9CE8712844764300777275 /* NewWorkoutViewController.swift in Sources */,
 				FA783C83284B8726009F57B9 /* SimpleAlert.swift in Sources */,
 				FA4993EC2841062A00EAC574 /* CalendarView.swift in Sources */,
+				1302A395285C4A5A009A70E9 /* SettingViewController.swift in Sources */,
 				FA0132372847CFC300BC7392 /* TimerWorkoutParametersView.swift in Sources */,
 				FA7D9A092842DEE50051C6C2 /* CalendarCollectionViewCell.swift in Sources */,
 				FA7D9A002842D2430051C6C2 /* UIView + Extensions.swift in Sources */,
