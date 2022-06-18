@@ -15,6 +15,7 @@
 		136A1D70285B30A700106CD6 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */; };
 		136A1D73285B7DC000106CD6 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */; };
 		13C1DEA5285CF30500FBC607 /* GallaryOrPhotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1DEA4285CF30500FBC607 /* GallaryOrPhotoAlert.swift */; };
+		13EFEB61285D95AC004C5D12 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFEB60285D95AC004C5D12 /* Notifications.swift */; };
 		FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */; };
 		FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */; };
 		FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */; };
@@ -58,6 +59,7 @@
 		136A1D6F285B30A700106CD6 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
 		136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		13C1DEA4285CF30500FBC607 /* GallaryOrPhotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryOrPhotoAlert.swift; sourceTree = "<group>"; };
+		13EFEB60285D95AC004C5D12 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				FA4993D12840FC0E00EAC574 /* AppDelegate.swift */,
 				FA4993D32840FC0E00EAC574 /* SceneDelegate.swift */,
+				13EFEB60285D95AC004C5D12 /* Notifications.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */,
 				FA5BD8FB28438C9600BCB89C /* WorkoutTableViewCell.swift in Sources */,
 				FA7D9A022842D3A60051C6C2 /* UIColor + Extensions.swift in Sources */,
+				13EFEB61285D95AC004C5D12 /* Notifications.swift in Sources */,
 				13C1DEA5285CF30500FBC607 /* GallaryOrPhotoAlert.swift in Sources */,
 				FA7D9A062842D4E30051C6C2 /* UIFont + Extensions.swift in Sources */,
 				FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */,

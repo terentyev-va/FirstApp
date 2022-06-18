@@ -139,12 +139,23 @@ class ProfileViewController: UIViewController {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height / 2
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        resultWorkout = [ResultWorkout]()
+        getWorkoutResults()
+        collectionView.reloadData()
+        setupUserParametrs()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setConstraints()
         setDelegates()
+        
+        userArray = localRealm.objects(UserModel.self)
     }
     
     private func setDelegates() {
@@ -210,6 +221,21 @@ class ProfileViewController: UIViewController {
         let settingViewController = SettingsViewController()
         settingViewController.modalPresentationStyle = .fullScreen
         present(settingViewController, animated: true)
+    }
+    
+    private func setupUserParametrs() {
+        
+        if userArray.count != 0 {
+            userNameLabel.text = userArray[0].userFirstName + " " + userArray[0].userSecondName
+            userHeightLabel.text = "Height: \(userArray[0].userHeight)"
+            userWeightLabel.text = "Weight: \(userArray[0].userWeight)"
+            targetLabel.text = "TARGET: \(userArray[0].userTarget)"
+            workoutsTargetLabel.text = "\(userArray[0].userTarget)"
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            userPhotoImageView.image = image
+        }
     }
 }
 

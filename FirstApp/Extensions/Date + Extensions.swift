@@ -70,4 +70,11 @@ extension Date {
         let offsetDate = Calendar.current.date(byAdding: .month, value: -month, to: self) ?? Date()
         return offsetDate
     }
+    
+    func ddMMyyyyFromDate() -> String {
+        let formater = DateFormatter()
+        formater.dateFormat = "yyyy/MM/dd"
+        let date = formater.string(from: self)
+        return date
+    }
 }
