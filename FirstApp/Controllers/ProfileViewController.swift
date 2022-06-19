@@ -122,6 +122,27 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
+    private let targetView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 15
+        view.backgroundColor = .specialBrown
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.trackTintColor = .specialBrown
+        progressView.progressTintColor = .specialGreen
+        progressView.layer.cornerRadius = 14
+        progressView.clipsToBounds = true
+        progressView.setProgress(0, animated: false)
+        progressView.layer.sublayers?[1].cornerRadius = 14
+        progressView.subviews[1].clipsToBounds = true
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
+    }()
+    
     private var userParamStackView = UIStackView()
     private var targetStackView = UIStackView()
     
@@ -184,6 +205,8 @@ class ProfileViewController: UIViewController {
         targetStackView = UIStackView(arrangedSubviews: [workoutsNowLabel, workoutsTargetLabel],
                                       axis: .horizontal, spacing: 10)
         view.addSubview(targetStackView)
+        view.addSubview(targetView)
+        view.addSubview(progressView)
     }
     
     private func getWorkoutName() -> [String] {
@@ -244,22 +267,13 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+        resultWorkout.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idProfileCollectionViewCell", for: indexPath) as? ProfileCollectionViewCell else { return UICollectionViewCell() }
         cell.backgroundColor = (indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ? .specialGreen : .specialDarkYellow)
         return cell
-    }
-}
-
-//MARK: - UICollectionViewDelegate
-
-extension ProfileViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapCell")
     }
 }
 
@@ -270,6 +284,14 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width / 2.07,
                height: 120)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        progressView.setProgress(0.6, animated: true)
     }
 }
 
@@ -333,6 +355,20 @@ extension ProfileViewController {
             targetStackView.topAnchor.constraint(equalTo: targetLabel.bottomAnchor, constant: 10),
             targetStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             targetStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+        ])
+        
+        NSLayoutConstraint.activate([
+            targetView.topAnchor.constraint(equalTo: targetStackView.bottomAnchor, constant: 3),
+            targetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            targetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            targetView.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        
+        NSLayoutConstraint.activate([
+            progressView.topAnchor.constraint(equalTo: targetView.bottomAnchor, constant: 20),
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            progressView.heightAnchor.constraint(equalToConstant: 28)
         ])
     }
 }

@@ -115,6 +115,7 @@ class MainViewController: UIViewController {
         setupViews()
         setConstraints()
         setDelegates()
+        getWeather()
         
         userArray = localRealm.objects(UserModel.self)
 
@@ -142,6 +143,24 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         calendarView.cellCollectionViewDelegate = self
+    }
+    
+    private func getWeather() {
+        NetworkDataFetch.shared.fetchWeather { [weak self] result, error in
+            guard let self = self else { return }
+            if let model = result {
+                self.weatherView.setWeather(model: model)
+                NetworkImageRequest.shared.requestData(id: model.weather[0].icon) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let data):
+                        self.weatherView.setImage(data: data)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
     
     @objc private func addWorkoutButtonTapped() {

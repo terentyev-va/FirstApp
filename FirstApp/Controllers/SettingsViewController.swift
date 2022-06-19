@@ -283,8 +283,6 @@ class SettingsViewController: UIViewController {
             userModel.userImage = imageData
         }
     }
-    
-    
 }
 
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
