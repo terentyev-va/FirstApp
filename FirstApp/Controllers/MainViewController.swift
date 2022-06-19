@@ -103,6 +103,11 @@ class MainViewController: UIViewController {
         tableView.reloadData()
         setupUserParametrs()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showOnBoarding()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,7 +205,19 @@ extension MainViewController: StartWorkoutProtocol {
             userPhotoImageView.image = image
         }
     }
+    
+    private func showOnBoarding() {
+        let userDefaults = UserDefaults.standard
+        let onBoardWasView = userDefaults.bool(forKey: "OnBoardingWasViewed")
+        if onBoardWasView == false {
+            let onboardingViewController = OnboardingViewController()
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: false)
+        }
+    }
 }
+
+//MARK: - SelectCollectionViewItemProtocol
 
 extension MainViewController: SelectCollectionViewItemProtocol {
     

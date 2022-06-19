@@ -16,6 +16,8 @@
 		136A1D73285B7DC000106CD6 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */; };
 		13C1DEA5285CF30500FBC607 /* GallaryOrPhotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1DEA4285CF30500FBC607 /* GallaryOrPhotoAlert.swift */; };
 		13EFEB61285D95AC004C5D12 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFEB60285D95AC004C5D12 /* Notifications.swift */; };
+		13EFEB63285DB22C004C5D12 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFEB62285DB22C004C5D12 /* OnboardingViewController.swift */; };
+		13EFEB66285DBB3F004C5D12 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFEB65285DBB3F004C5D12 /* OnboardingCollectionViewCell.swift */; };
 		FA01322F2847CD5400BC7392 /* RepsWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */; };
 		FA0132312847CE3700BC7392 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */; };
 		FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */; };
@@ -60,6 +62,8 @@
 		136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		13C1DEA4285CF30500FBC607 /* GallaryOrPhotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryOrPhotoAlert.swift; sourceTree = "<group>"; };
 		13EFEB60285D95AC004C5D12 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		13EFEB62285DB22C004C5D12 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		13EFEB65285DBB3F004C5D12 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA01322E2847CD5400BC7392 /* RepsWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132302847CE3700BC7392 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		FA0132342847CF9300BC7392 /* WorkoutParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutParametersView.swift; sourceTree = "<group>"; };
@@ -117,6 +121,14 @@
 				136A1D72285B7DC000106CD6 /* ProfileCollectionViewCell.swift */,
 			);
 			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		13EFEB64285DBB1A004C5D12 /* OnboardingVC */ = {
+			isa = PBXGroup;
+			children = (
+				13EFEB65285DBB3F004C5D12 /* OnboardingCollectionViewCell.swift */,
+			);
+			path = OnboardingVC;
 			sourceTree = "<group>";
 		};
 		FA0132322847CF3B00BC7392 /* RepsWorkoutVC */ = {
@@ -198,6 +210,7 @@
 		FA4993E82840FE2C00EAC574 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				13EFEB62285DB22C004C5D12 /* OnboardingViewController.swift */,
 				FA9CE86A28446F7600777275 /* MainTabBarController.swift */,
 				FA4993D52840FC0E00EAC574 /* MainViewController.swift */,
 				FA5BD8FE28439E7300BCB89C /* StatisticsViewController.swift */,
@@ -213,6 +226,7 @@
 		FA4993E92841057A00EAC574 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				13EFEB64285DBB1A004C5D12 /* OnboardingVC */,
 				FA783C81284B86F2009F57B9 /* Alerts */,
 				FA4993EA284105C700EAC574 /* MainVC */,
 				FA5BD9002843A44C00BCB89C /* StatisticsVC */,
@@ -407,6 +421,7 @@
 				FA9CE86B28446F7600777275 /* MainTabBarController.swift in Sources */,
 				136A1D70285B30A700106CD6 /* OkCancelAlert.swift in Sources */,
 				FA4993D62840FC0E00EAC574 /* MainViewController.swift in Sources */,
+				13EFEB63285DB22C004C5D12 /* OnboardingViewController.swift in Sources */,
 				FA7FCA602846348900CEDEA6 /* RealmManager.swift in Sources */,
 				FA5BD8FF28439E7300BCB89C /* StatisticsViewController.swift in Sources */,
 				FA4993D22840FC0E00EAC574 /* AppDelegate.swift in Sources */,
@@ -415,6 +430,7 @@
 				FA0132352847CF9300BC7392 /* WorkoutParametersView.swift in Sources */,
 				FA5BD8FB28438C9600BCB89C /* WorkoutTableViewCell.swift in Sources */,
 				FA7D9A022842D3A60051C6C2 /* UIColor + Extensions.swift in Sources */,
+				13EFEB66285DBB3F004C5D12 /* OnboardingCollectionViewCell.swift in Sources */,
 				13EFEB61285D95AC004C5D12 /* Notifications.swift in Sources */,
 				13C1DEA5285CF30500FBC607 /* GallaryOrPhotoAlert.swift in Sources */,
 				FA7D9A062842D4E30051C6C2 /* UIFont + Extensions.swift in Sources */,
